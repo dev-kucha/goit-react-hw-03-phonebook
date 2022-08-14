@@ -1,19 +1,13 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import styled from 'styled-components';
-import * as yup from 'yup';
-import 'yup-phone';
+import ContactForm from './ContactForm/ContactForm';
 
 const Input = styled(Field)`
   color: #2a2a2a;
   font-size: 16px;
 `;
-
-const schema = yup.object().shape({
-  name: yup.string().required(),
-  number: yup.string().phone('UA').required(),
-});
 
 export class App extends Component {
   state = {
@@ -52,43 +46,13 @@ export class App extends Component {
       <div
         style={{
           height: '100vh',
-          // display: 'flex',
-          // justifyContent: 'center',
-          // alignItems: 'center',
           fontSize: 20,
           color: '#010101',
         }}
       >
         <h2>Phonebook</h2>
-        <h3>Name</h3>
-        <Formik
-          initialValues={{ name: '', number: '' }}
-          validationSchema={schema}
-          onSubmit={(values, { resetForm }) => {
-            // console.log(values);
-            this.handleSubmit(values);
-            // console.log(actions);
-            resetForm();
-          }}
-        >
-          <Form>
-            <label>
-              Name
-              <Input type="text" name="name" />
-              <ErrorMessage name="name" component="div" />
-            </label>
-            <br />
-            <label>
-              Number
-              <Input type="tel" name="number" />
-              <ErrorMessage name="number" component="div" />
-            </label>
-            <br />
-            <button type="submit" name="addContact">
-              Add contact
-            </button>
-          </Form>
-        </Formik>
+        <ContactForm handleSubmit={this.handleSubmit} />
+
         <h2>Contacts</h2>
         <Formik initialValues={{ filter: this.state.filter }}>
           <Form>
@@ -99,17 +63,7 @@ export class App extends Component {
                 name="filter"
                 value={this.state.filter}
                 onChange={e => {
-                  // console.log(e.target);
-                  // console.log(e.target.value);
                   this.handleFilter(e.target.value);
-                  // this.handleSubmit(values);
-                  // console.log(actions);
-                  // e.preventDefault();
-                  // console.log(e.target.elements.name.value);
-                  // const { name } = target.elements;
-                  // this.addContact({ name: name, id: nanoid() });
-                  // this.handleSubmit(e.target.elements);
-                  // e.target.reset();
                 }}
               ></Input>
             </label>
