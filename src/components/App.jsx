@@ -33,6 +33,13 @@ export class App extends Component {
       return { contacts: [contact, ...prevState.contacts] };
     });
   };
+
+  handleDelete = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
+
   handleSubmit = ({ name, number }) => {
     !this.isIncludes(name)
       ? this.addContact(this.createContact(name, number))
@@ -61,6 +68,7 @@ export class App extends Component {
         <ContactList
           contacts={this.state.contacts}
           filter={this.state.filter}
+          handleDelete={this.handleDelete}
         />
       </div>
     );
