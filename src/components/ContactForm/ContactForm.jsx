@@ -4,9 +4,19 @@ import styled from 'styled-components';
 import * as yup from 'yup';
 import 'yup-phone';
 
+const Label = styled.label`
+  display: block;
+  margin-bottom: 8px;
+  /* background-color: grey; */
+`;
+
 const Input = styled(Field)`
   color: #2a2a2a;
   font-size: 16px;
+`;
+
+const ErrorMessageStiled = styled(ErrorMessage)`
+  color: red;
 `;
 
 const schema = yup.object().shape({
@@ -16,33 +26,30 @@ const schema = yup.object().shape({
 });
 
 const ContactForm = function ({ handleSubmit }) {
-  //   const { title, stats } = p;
-  //   console.log(p);
   return (
     <>
-      <h3>Name</h3>
       <Formik
         initialValues={{ name: '', number: '' }}
         validationSchema={schema}
         onSubmit={(values, { resetForm }) => {
-          // console.log(values);
           handleSubmit(values);
-          // console.log(actions);
           resetForm();
         }}
       >
         <Form>
-          <label>
+          <Label>
             Name
+            <br />
             <Input type="text" name="name" />
-            <ErrorMessage name="name" component="div" />
-          </label>
+            <ErrorMessageStiled name="name" component="div" />
+          </Label>
           <br />
-          <label>
+          <Label>
             Number
-            <Input type="tel" name="number" />
-            <ErrorMessage name="number" component="div" />
-          </label>
+            <br />
+            <Input type="tel" name="number" placeholder="+380..." />
+            <ErrorMessageStiled name="number" component="div" />
+          </Label>
           <br />
           <button type="submit" name="addContact">
             Add contact

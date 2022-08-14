@@ -1,9 +1,17 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
+
+const Main = styled.div`
+  /* height: '100vh'; */
+  width: 520px;
+  margin: 0 auto;
+  font-size: 16px;
+  color: '#010101';
+`;
 
 export class App extends Component {
   state = {
@@ -54,13 +62,7 @@ export class App extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          height: '100vh',
-          fontSize: 20,
-          color: '#010101',
-        }}
-      >
+      <Main>
         <h1>Phonebook</h1>
         <ContactForm handleSubmit={this.handleSubmit} />
         <h2>Contacts</h2>
@@ -70,7 +72,7 @@ export class App extends Component {
           filter={this.state.filter}
           handleDelete={this.handleDelete}
         />
-      </div>
+      </Main>
     );
   }
 }

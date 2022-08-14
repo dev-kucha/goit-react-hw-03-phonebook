@@ -1,10 +1,16 @@
 import PropTypes from 'prop-types';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import ContactItem from './ContactItem';
+
+const ListSlyled = styled.ul`
+  list-style: none;
+
+  padding: 0;
+`;
 
 const ContactList = function ({ contacts, filter, handleDelete }) {
   return (
-    <ul>
+    <ListSlyled>
       {contacts
         .filter(contact =>
           contact.name.toLowerCase().includes(filter.toLowerCase())
@@ -16,7 +22,7 @@ const ContactList = function ({ contacts, filter, handleDelete }) {
             </li>
           );
         })}
-    </ul>
+    </ListSlyled>
   );
 };
 

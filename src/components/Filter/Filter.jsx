@@ -13,6 +13,7 @@ const Filter = function ({ filter, handleFilter }) {
       <Form>
         <label>
           Find contacts by name
+          <br />
           <Input
             type="text"
             name="filter"
