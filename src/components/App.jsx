@@ -1,14 +1,9 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import { Formik, Form, Field } from 'formik';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
-
-const Input = styled(Field)`
-  color: #2a2a2a;
-  font-size: 16px;
-`;
+import Filter from './Filter/Filter';
 
 export class App extends Component {
   state = {
@@ -52,21 +47,7 @@ export class App extends Component {
         <h1>Phonebook</h1>
         <ContactForm handleSubmit={this.handleSubmit} />
         <h2>Contacts</h2>
-        <Formik initialValues={{ filter: this.state.filter }}>
-          <Form>
-            <label>
-              Find contacts by name
-              <Input
-                type="text"
-                name="filter"
-                value={this.state.filter}
-                onChange={e => {
-                  this.handleFilter(e.target.value);
-                }}
-              ></Input>
-            </label>
-          </Form>
-        </Formik>
+        <Filter filter={this.filter} handleFilter={this.handleFilter} />
         <ContactList
           contacts={this.state.contacts}
           filter={this.state.filter}
