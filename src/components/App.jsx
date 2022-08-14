@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import { Formik, Form, Field } from 'formik';
 import styled from 'styled-components';
 import ContactForm from './ContactForm/ContactForm';
+import ContactList from './ContactList/ContactList';
 
 const Input = styled(Field)`
   color: #2a2a2a;
@@ -18,8 +19,6 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '38077-227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
   createContact(name, number) {
@@ -50,9 +49,8 @@ export class App extends Component {
           color: '#010101',
         }}
       >
-        <h2>Phonebook</h2>
+        <h1>Phonebook</h1>
         <ContactForm handleSubmit={this.handleSubmit} />
-
         <h2>Contacts</h2>
         <Formik initialValues={{ filter: this.state.filter }}>
           <Form>
@@ -69,23 +67,10 @@ export class App extends Component {
             </label>
           </Form>
         </Formik>
-        {}
-        <ul>
-          {this.state.contacts
-            .filter(contact =>
-              contact.name
-                .toLowerCase()
-                .includes(this.state.filter.toLowerCase())
-            )
-            .map((contact, idx) => {
-              // this.state.contacts.map((contact, idx) => {
-              return (
-                <li key={idx}>
-                  {contact.name}: {contact.number}
-                </li>
-              );
-            })}
-        </ul>
+        <ContactList
+          contacts={this.state.contacts}
+          filter={this.state.filter}
+        />
       </div>
     );
   }
