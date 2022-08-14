@@ -11,7 +11,8 @@ const Input = styled(Field)`
 
 const schema = yup.object().shape({
   name: yup.string().required(),
-  number: yup.string().phone('UA').required(),
+  number: yup.string().phone().required(),
+  // number: yup.string().phone('UA').required(),
 });
 
 const ContactForm = function ({ handleSubmit }) {

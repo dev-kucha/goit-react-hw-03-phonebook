@@ -8,10 +8,10 @@ import Filter from './Filter/Filter';
 export class App extends Component {
   state = {
     contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '38044-459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '38055-443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '38066-645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '38077-227-91-26' },
+      { id: 'id-1', name: 'Rosie Simpson', number: '+38044-459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '+38055-443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '+38066-645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '+38077-227-91-26' },
     ],
     filter: '',
   };
@@ -19,6 +19,14 @@ export class App extends Component {
   createContact(name, number) {
     return { name: name, number: number, id: nanoid() };
   }
+  isIncludes = newName => {
+    return this.state.contacts.find(
+      contact =>
+        contact.name.toLocaleLowerCase() === newName.toLocaleLowerCase()
+    )
+      ? true
+      : false;
+  };
 
   addContact = contact => {
     this.setState(prevState => {
@@ -26,7 +34,9 @@ export class App extends Component {
     });
   };
   handleSubmit = ({ name, number }) => {
-    this.addContact(this.createContact(name, number));
+    !this.isIncludes(name)
+      ? this.addContact(this.createContact(name, number))
+      : alert(`${name} is already in contacts`);
   };
 
   handleFilter = filterText => {
