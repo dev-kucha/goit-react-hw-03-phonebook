@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 // import styled from 'styled-components';
+import ContactItem from './ContactItem';
 
 const ContactList = function ({ contacts, filter }) {
   return (
@@ -11,7 +12,7 @@ const ContactList = function ({ contacts, filter }) {
         .map((contact, idx) => {
           return (
             <li key={idx}>
-              {contact.name}: {contact.number}
+              <ContactItem contact={contact} />
             </li>
           );
         })}
