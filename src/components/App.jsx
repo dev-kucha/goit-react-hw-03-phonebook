@@ -6,11 +6,9 @@ import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 
 const Main = styled.div`
-  /* height: '100vh'; */
   width: 520px;
   margin: 0 auto;
   font-size: 16px;
-  color: '#010101';
 `;
 
 export class App extends Component {

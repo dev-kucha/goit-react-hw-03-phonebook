@@ -4,10 +4,15 @@ import styled from 'styled-components';
 import * as yup from 'yup';
 import 'yup-phone';
 
+const FormPlateStyled = styled.section`
+  border: 1px solid lightgrey;
+  padding: 8px;
+  margin-bottom: 36px;
+`;
+
 const Label = styled.label`
   display: block;
   margin-bottom: 8px;
-  /* background-color: grey; */
 `;
 
 const Input = styled(Field)`
@@ -27,7 +32,7 @@ const schema = yup.object().shape({
 
 const ContactForm = function ({ handleSubmit }) {
   return (
-    <>
+    <FormPlateStyled>
       <Formik
         initialValues={{ name: '', number: '' }}
         validationSchema={schema}
@@ -56,7 +61,7 @@ const ContactForm = function ({ handleSubmit }) {
           </button>
         </Form>
       </Formik>
-    </>
+    </FormPlateStyled>
   );
 };
 

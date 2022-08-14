@@ -4,7 +4,6 @@ import ContactItem from './ContactItem';
 
 const ListSlyled = styled.ul`
   list-style: none;
-
   padding: 0;
 `;
 
