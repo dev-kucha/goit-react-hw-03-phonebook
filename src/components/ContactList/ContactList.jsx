@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 import ContactItem from './ContactItem';
 
-const ContactList = function ({ contacts, filter }) {
+const ContactList = function ({ contacts, filter, handleDelete }) {
   return (
     <ul>
       {contacts
@@ -12,7 +12,7 @@ const ContactList = function ({ contacts, filter }) {
         .map((contact, idx) => {
           return (
             <li key={idx}>
-              <ContactItem contact={contact} />
+              <ContactItem contact={contact} handleDelete={handleDelete} />
             </li>
           );
         })}
@@ -23,6 +23,7 @@ const ContactList = function ({ contacts, filter }) {
 ContactList.propTypes = {
   contacts: PropTypes.array.isRequired,
   filter: PropTypes.string.isRequired,
+  handleDelete: PropTypes.func.isRequired,
 };
 
 export default ContactList;
