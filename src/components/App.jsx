@@ -58,6 +58,23 @@ export class App extends Component {
     });
   };
 
+  componentDidMount() {
+    try {
+      const cts = JSON.parse(localStorage.getItem('contacts'));
+      console.log(`cts: ${cts}`);
+      this.setState(() => {
+        return {
+          contacts: cts,
+        };
+      });
+    } catch {}
+  }
+
+  componentDidUpdate() {
+    console.log(this.state.contacts);
+    localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+  }
+
   render() {
     return (
       <Main>
